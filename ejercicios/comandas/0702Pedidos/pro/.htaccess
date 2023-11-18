@@ -1,0 +1,5 @@
+RewriteEngine on
+RewriteRule ^producto$ producto.php
+RewriteRule ^producto/(.+)$ producto.php?idProducto=$1
+
+

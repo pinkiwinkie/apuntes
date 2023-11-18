@@ -1,5 +1,27 @@
 <?php
 
+class Bd
+{
+	private $link;
+	function __construct()
+	{
+		if (!isset($this->link)) {
+			try {
+				$this->link = new PDO("mysql:host=localhost;dbname=virtualmarket", "root", "");
+				$this->link->exec("set names utf8mb4");
+			} catch (PDOException $e) {
+				$dato = "¡Error!: " . $e->getMessage() . "<br/>";
+				return $dato;
+				die();
+			}
+		}
+	}
+
+	function __get($var)
+	{
+		return $this->$var;
+	}
+}
 class Cliente
 {
 	private $dniCliente;
@@ -17,7 +39,7 @@ class Cliente
 			return $result;
 		} catch (PDOException $e) {
 			$dato = "¡Error!: " . $e->getMessage() . "<br/>";
-			require "../vistas/mensaje.php";
+			return $dato;
 			die();
 		}
 	}
@@ -29,6 +51,10 @@ class Cliente
 		$this->email = $email;
 		$this->pwd = $pwd;
 	}
+	function __get($var)
+	{
+		return $this->$var;
+	}
 	function buscar($link)
 	{
 		try {
@@ -38,27 +64,14 @@ class Cliente
 			return $result->fetch(PDO::FETCH_ASSOC);
 		} catch (PDOException $e) {
 			$dato = "¡Error!: " . $e->getMessage() . "<br/>";
-			require "../vistas/mensaje.php";
-			die();
-		}
-	}
-	function validar($link)
-	{
-		try {
-			$cli = $this->buscar($link);
-			if (password_verify($this->pwd, $cli['pwd']))
-				return $cli;
-			else return false;
-		} catch (PDOException $e) {
-			$dato = "¡Error!: " . $e->getMessage() . "<br/>";
-			require "../vistas/mensaje.php";
+			return $dato;
 			die();
 		}
 	}
 	function insertar($link)
 	{
 		try {
-			$consulta = "INSERT INTO clientes VALUES (:dniCliente,:nombre,:direccion,:email,:pwd,0)";
+			$consulta = "INSERT INTO clientes VALUES (:dniCliente,:nombre,:direccion,:email,:pwd)";
 			$result = $link->prepare($consulta);
 			$result->bindParam(':dniCliente', $dniCliente);
 			$result->bindParam(':nombre', $nombre);
@@ -69,15 +82,17 @@ class Cliente
 			$nombre = $this->nombre;
 			$direccion = $this->direccion;
 			$email = $this->email;
-			$pwd = password_hash($this->pwd, PASSWORD_DEFAULT);
+			$pwd = $this->pwd;
 			$result->execute();
 			return $result;
 		} catch (PDOException $e) {
 			$dato = "¡Error!: " . $e->getMessage() . "<br/>";
-			require "../vistas/mensaje.php";
+			return $dato;
 			die();
 		}
 	}
+
+
 	function modificar($link)
 	{
 		try {
@@ -86,7 +101,26 @@ class Cliente
 			return $result->execute();
 		} catch (PDOException $e) {
 			$dato = "¡Error!: " . $e->getMessage() . "<br/>";
-			require "../vistas/mensaje.php";
+			return $dato;
+			die();
+		}
+	}
+
+	function modificarParcial($link, $input)
+	{
+		try {
+			$fields = getParams($input);
+			$consulta = "
+          		UPDATE clientes
+          		SET $fields
+          		WHERE dniCliente='$this->dniCliente'";
+			$result = $link->prepare($consulta);
+
+			$result->execute();
+			return $result;
+		} catch (PDOException $e) {
+			$dato = "¡Error!: " . $e->getMessage() . "<br/>";
+			return $dato;
 			die();
 		}
 	}
@@ -98,12 +132,8 @@ class Cliente
 			return $result->execute();
 		} catch (PDOException $e) {
 			$dato = "¡Error!: " . $e->getMessage() . "<br/>";
-			require "../vistas/mensaje.php";
+			return $dato;
 			die();
 		}
-	}
-	function __get($var)
-	{
-		return $this->$var;
 	}
 }
