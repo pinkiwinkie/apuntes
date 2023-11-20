@@ -6,8 +6,8 @@ if (isset($_POST['enviar'])) {
 	try {
 		$ped = new Pedido($_POST['idPedido'], $_POST['fecha'], $_POST['Cliente']);
 		$base->link->beginTransaction();
-		if (!$ped->existe($base->link)) {			
-			$ped->insertar($base->link);			
+		if (!$ped->existe($base->link)) {
+			$ped->insertar($base->link);
 			$dato = "El pedido se ha insertado correctamente";
 		} else {
 			$dato = "Ya existe este pedido se añadirá solo la linea<br/>";

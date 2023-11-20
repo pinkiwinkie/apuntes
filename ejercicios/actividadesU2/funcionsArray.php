@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <title>Desarrollo Web con PHP 7 y MVC</title>
     <style>
-        table, tr, td, th{
+        table,
+        tr,
+        td,
+        th {
             border: 1px solid black;
         }
     </style>
 </head>
+
 <body>
     <h1>Tema 1: Actividad 3</h1>
-<?php
+    <?php
     $nombres = [
         'Alejandro',
         'María',
@@ -48,8 +53,7 @@
     echo '<th>ID</th><th>NOMBRE</th><th>EDAD</th>';
     echo '</tr>';
 
-    foreach ($alumnos as $alumno)
-    {
+    foreach ($alumnos as $alumno) {
         echo '<tr>';
         echo '<td>' . $alumno['id'] . '</td>';
         echo '<td>' . $alumno['nombre'] . '</td>';
@@ -66,6 +70,7 @@
     $numeros = [5, 7, 3, 4, 1, 6, 8, 2, 9, 0];
     $suma = array_sum($numeros);
     echo 'La suma de ' . implode(' + ', $numeros) . ' es ' . $suma;
-?>
+    ?>
 </body>
+
 </html>

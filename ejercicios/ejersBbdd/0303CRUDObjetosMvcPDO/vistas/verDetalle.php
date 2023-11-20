@@ -1,5 +1,4 @@
 <?php
 
-foreach ($dato as $key => $value) 
-		echo "$key: $value <br>";
-	
+foreach ($dato as $key => $value)
+	echo "$key: $value <br>";

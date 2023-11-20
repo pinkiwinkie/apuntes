@@ -3,6 +3,6 @@
 	nombre: <input type="text" name="nombre"><br>
 	direccion: <input type="text" name="direccion"><br>
 	email: <input type="text" name="email"><br>
-	pwd: <input type="text" name="pwd">	<br>
+	pwd: <input type="text" name="pwd"> <br>
 	<input type="submit" name="enviar"><br>
 </form>

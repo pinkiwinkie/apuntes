@@ -36,7 +36,7 @@ echo "<p>El nombre contiene $numApariciones veces la letra $letra (mayúscula o 
 
 //SABER SI UN STRING CONTIENE UN CARACTER Y SU POSICION
 //CONVERTIRLO A UPPER O LOWER
-$posicion = stripos($strtolower($nombreMayusculas), $strtolower($letra)) ;
+$posicion = stripos($strtolower($nombreMayusculas), $strtolower($letra));
 
 if ($posicion === false)
     echo "<p>El nombre $nombre no contiene la letra $letra (mayúscula ni minúscula)</p>";

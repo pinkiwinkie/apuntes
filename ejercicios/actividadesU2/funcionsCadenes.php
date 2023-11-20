@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Desarrollo Web con PHP 7 y MVC</title>
 </head>
+
 <body>
     <h1>Tema 1: Actividad 2</h1>
-<?php
+    <?php
     $nombre = "   Paco Lopez Arroyo   ";
     $nombre = trim($nombre);
     echo "<p>$nombre</p>";
@@ -20,18 +22,18 @@
     $nombreMinusculas = strtolower($nombre);
     echo "<p>Nombre en minúsculas: $nombreMinusculas</p>";
 
-    
-        $prefijo = 'Pac';
-        $pos = strpos($nombre, $prefijo);
-        if ($pos === 0)
-            echo "<p>El nombre $nombre comienza por $prefijo</p>";
-        else
-            echo "<p>El nombre $nombre no comienza por $prefijo</p>";
-   
+
+    $prefijo = 'Pac';
+    $pos = strpos($nombre, $prefijo);
+    if ($pos === 0)
+        echo "<p>El nombre $nombre comienza por $prefijo</p>";
+    else
+        echo "<p>El nombre $nombre no comienza por $prefijo</p>";
+
 
     $letra = 'A';
     $numApariciones = substr_count($nombreMayusculas, $letra);
-    
+
     echo "<p>El nombre contiene $numApariciones veces la letra $letra (mayúscula o minúscula)</p>";
 
     $posicion = stripos($nombreMayusculas, $letra);
@@ -56,6 +58,7 @@
     echo "<li>Path: $path</li>";
     echo "<li>Querystring: $query</li>";
     echo '</ul>'
-?>
+    ?>
 </body>
+
 </html>

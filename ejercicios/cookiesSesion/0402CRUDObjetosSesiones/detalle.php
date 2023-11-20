@@ -1,20 +1,19 @@
 <?php
 session_start();
-if (isset($_SESSION['nombre'])){
+if (isset($_SESSION['nombre'])) {
 
     include "vistas/inicio.html";
     require "modelo.php";
-    $link=new Bd;
-    $cli= new Cliente($_GET['dni'],'','','','');
-    $dato=$cli->buscar($link->link);
+    $link = new Bd;
+    $cli = new Cliente($_GET['dni'], '', '', '', '');
+    $dato = $cli->buscar($link->link);
     require "vistas/verDetalle.php";
-    $dato="<a href='index.php'>Volver</a>";
+    $dato = "<a href='index.php'>Volver</a>";
     require "vistas/mensaje.php";
-    $link=NULL;
+    $link = NULL;
     include "vistas/fin.html";
-
-}else{
-    $dato="Tienes que estar validado<br> ";
-    $dato.="<a href='validar.php'>Validarse</a>";
+} else {
+    $dato = "Tienes que estar validado<br> ";
+    $dato .= "<a href='validar.php'>Validarse</a>";
     require "vistas/mensaje.php";
 }
