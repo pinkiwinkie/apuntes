@@ -15,4 +15,4 @@ try{
 }
 
 $dato.="<br><a href=index.php> volver</a>";
-require "vistas/mensaje.php";
+require"vistas/mensaje.php";
